@@ -40,7 +40,7 @@ export const list = query({
         return {
           ...entry,
           name: user.name,
-          image: user.image ?? null, // ← ADD THIS LINE
+          image: user.image ?? undefined, // ← ADD THIS LINE
         };
       })
     );
