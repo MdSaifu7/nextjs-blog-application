@@ -55,10 +55,10 @@ export default BlogPage;
 
 async function getBlogList() {
   // const posts = await getBlogAction();
-  // "use cache";
-  // cacheLife("hours");
-  // cacheTag("blogs");
-  await connection();
+  "use cache";
+  cacheLife("hours");
+  cacheTag("blogs");
+  // await connection();
   const posts = await fetchQuery(api.posts.getPosts);
   return (
     <section className="container mx-auto max-w-7xl px-6 py-12">
