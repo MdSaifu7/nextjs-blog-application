@@ -1,5 +1,5 @@
-import Nav from "@/components/web/Navbar";
-import React from "react";
+import Navbar from "@/components/web/Navbar";
+import React, { Suspense } from "react";
 
 export default function SharedLayout({
   children,
@@ -8,7 +8,9 @@ export default function SharedLayout({
 }) {
   return (
     <>
-      <Nav />
+      <Suspense fallback={null}>
+        <Navbar />
+      </Suspense>
       {children}
     </>
   );
