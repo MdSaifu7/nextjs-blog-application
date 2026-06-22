@@ -15,6 +15,7 @@ import Image from "next/image";
 import { fetchQuery } from "convex/nextjs";
 import { cacheLife, cacheTag } from "next/cache";
 import { api } from "@/convex/_generated/api";
+import { connection } from "next/server";
 
 export const metadata: Metadata = {
   title: "Blog | My Awesome Website",
@@ -27,9 +28,6 @@ export const metadata: Metadata = {
     url: "https://mywebsite.com/blog",
   },
 };
-
-// export const dynamic = "force-static";
-// export const revalidate = 30;
 
 const BlogPage = async () => {
   return (
@@ -57,9 +55,10 @@ export default BlogPage;
 
 async function getBlogList() {
   // const posts = await getBlogAction();
-  "use cache";
-  cacheLife("hours");
-  cacheTag("blogs");
+  // "use cache";
+  // cacheLife("hours");
+  // cacheTag("blogs");
+  await connection();
   const posts = await fetchQuery(api.posts.getPosts);
   return (
     <section className="container mx-auto max-w-7xl px-6 py-12">
