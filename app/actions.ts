@@ -7,7 +7,7 @@ import { api } from "@/convex/_generated/api";
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import { Id } from "@/convex/_generated/dataModel";
-import { revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 
 export async function createBlogAction(
   values: z.infer<typeof createPostSchema>
@@ -53,7 +53,7 @@ export async function createBlogAction(
     };
   }
 
-  revalidateTag("blogs");
+  revalidatePath("/blogs");
   return redirect("/blogs");
 }
 
