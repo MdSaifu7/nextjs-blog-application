@@ -7,7 +7,7 @@ import { api } from "@/convex/_generated/api";
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import { Id } from "@/convex/_generated/dataModel";
-import { revalidatePath, updateTag } from "next/cache";
+import { revalidateTag } from "next/cache";
 
 export async function createBlogAction(
   values: z.infer<typeof createPostSchema>
@@ -53,32 +53,10 @@ export async function createBlogAction(
     };
   }
 
-  // 3. Send the mutation to Convex using the JWT token
-  updateTag("blogs");
+  revalidateTag("blogs");
   return redirect("/blogs");
 }
 
-// export async function getUploadUrlAction() {
-//   try {
-//     const reqHeaders = await headers();
-//     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
-//     const tokenResponse = await fetch(`${baseUrl}/api/auth/convex/token`, {
-//       headers: reqHeaders,
-//     });
-//     const { token } = await tokenResponse.json();
-
-//     if (!token) throw new Error("Unauthorized");
-
-//     const uploadUrl = await fetchMutation(
-//       api.posts.generateUploadUrl,
-//       {},
-//       { token }
-//     );
-//     return { uploadUrl };
-//   } catch (error) {
-//     return { error: "Failed to authenticate upload" };
-//   }
-// }
 export async function getUploadUrlAction() {
   try {
     const reqHeaders = await headers();

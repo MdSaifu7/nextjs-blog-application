@@ -18,6 +18,10 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "next-basilisk-909.convex.cloud", // ← Fix this
+      },
+      {
+        protocol: "https",
 
         hostname: "next-basilisk-909.convex.site",
       },
