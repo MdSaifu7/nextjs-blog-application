@@ -3,8 +3,7 @@ import { getSessionCookie } from "better-auth/cookies";
 
 export async function proxy(request: NextRequest) {
   const sessionCookie = getSessionCookie(request, {
-    cookiePrefix: "better-auth", // must match your Better Auth config
-    https: process.env.NODE_ENV === "production", // ← ensures secure cookie is read
+    cookiePrefix: "better-auth",
   });
 
   if (!sessionCookie) {
@@ -13,6 +12,7 @@ export async function proxy(request: NextRequest) {
 
   return NextResponse.next();
 }
+
 export const config = {
-  matcher: ["/blogs", "/create"], // Specify the routes the middleware applies to
+  matcher: ["/blogs", "/create"],
 };
