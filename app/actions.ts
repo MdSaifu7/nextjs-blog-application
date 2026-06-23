@@ -54,7 +54,7 @@ export async function createBlogAction(
   }
 
   revalidatePath("/blogs");
-  return redirect("/blogs");
+  return;
 }
 
 export async function getUploadUrlAction() {
