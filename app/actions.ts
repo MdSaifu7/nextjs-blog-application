@@ -21,12 +21,11 @@ export async function createBlogAction(
 
     // 1. Grab cookies/headers from the active Next.js incoming request
     const reqHeaders = await headers();
+    const headersObj = Object.fromEntries(reqHeaders.entries());
 
-    // 2. Fetch the Convex JWT token from Better Auth's endpoint internally
-    // We must pass the headers so Better Auth knows who is asking!
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
     const tokenResponse = await fetch(`${baseUrl}/api/auth/convex/token`, {
-      headers: reqHeaders,
+      headers: headersObj,
     });
 
     if (!tokenResponse.ok) {
@@ -83,10 +82,11 @@ export async function createBlogAction(
 export async function getUploadUrlAction() {
   try {
     const reqHeaders = await headers();
+    const headersObj = Object.fromEntries(reqHeaders.entries());
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 
     const tokenResponse = await fetch(`${baseUrl}/api/auth/convex/token`, {
-      headers: reqHeaders,
+      headers: headersObj,
     });
 
     if (!tokenResponse.ok) {

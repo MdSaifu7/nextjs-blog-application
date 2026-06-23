@@ -28,19 +28,6 @@ export const createPost = mutation({
   },
 });
 
-// Return the last 100 tasks in a given task list.
-// export const getPosts = query({
-//   args: { title: v.string() },
-//   handler: async (ctx, args) => {
-//     const posts = await ctx.db
-//       .query("posts")
-
-//       .order("desc")
-//       .take(100);
-//     return posts;
-//   },
-// });
-
 export const getPosts = query({
   args: {},
   handler: async (ctx) => {
