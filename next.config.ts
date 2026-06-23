@@ -19,6 +19,11 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
 
+        hostname: "next-basilisk-909.convex.site",
+      },
+      {
+        protocol: "https",
+
         hostname: "plus.unsplash.com",
       },
     ],
